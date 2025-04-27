@@ -1,5 +1,5 @@
 const express = require('express');
-const supabase = require('./supabaseClient');
+const supabase = require('../supabaseClient');
 const app = express();
 
 app.get('/api/users', async (req, res) => {
