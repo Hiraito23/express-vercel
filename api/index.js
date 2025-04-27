@@ -1,9 +1,17 @@
-// api/index.js
 const express = require('express');
+const supabase = require('./supabaseClient'); // import supabase client
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello dari Express + Vercel!');
+app.get('/api/users', async (req, res) => {
+    const { data, error } = await supabase
+        .from('users') 
+        .select('*');
+
+    if (error) {
+        return res.status(400).json({ error: error.message });
+    }
+
+    res.json(data);
 });
 
 module.exports = app;
